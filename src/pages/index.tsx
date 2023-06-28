@@ -19,7 +19,11 @@ const Home = () => {
     if (board[y + 1] !== undefined && board[y + 1][x] === 3 - turnColor) {
       newBoard[y][x] = turnColor;
       setTurnColor(3 - turnColor);
+    } else if (board[y - 2] !== undefined && board[y - 2][x] === 3 - turnColor) {
+      newBoard[y][x] = turnColor;
+      setTurnColor(3 - turnColor);
     }
+
     setBoard(newBoard);
   };
 
