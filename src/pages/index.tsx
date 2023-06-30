@@ -27,9 +27,9 @@ const Home = () => {
       //} else {
       newBoard[y][x] = turnColor;
       setTurnColor(3 - turnColor);
-      //}
-      setBoard(newBoard);
     }
+    //}
+    setBoard(newBoard);
   };
 
   return (
