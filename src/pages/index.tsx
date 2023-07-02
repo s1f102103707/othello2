@@ -19,13 +19,13 @@ const Home = () => {
     const dx = [0, 1, 1, 1, 0, -1, -1, -1];
     const dy = [-1, -1, 0, 1, 1, 1, 0, -1];
 
-    function findLine(board: number[][], x: number, y: number, turnColor: number, dir: number) {
+    function findLine(board: number[][], x: number, y: number, Color: number, dir: number) {
       let i = x + dx[dir];
       let j = y + dy[dir];
       while (i >= 0 && i < 8 && j >= 0 && j < 8) {
         if (board[j][i] === 0) {
           return null;
-        } else if (board[j][i] === turnColor) {
+        } else if (board[j][i] === Color) {
           return { i, j };
         }
         i += dx[dir];
@@ -35,10 +35,14 @@ const Home = () => {
     }
 
     function flipLine(board: number[][], x: number, y: number, i: number, j: number) {
-      while (x !== i || y !== j) {
-        board[y][x] = 3 - board[y][x];
-        x += Math.sign(i - x);
-        y += Math.sign(j - y);
+      const dx = Math.sign(i - x);
+      const dy = Math.sign(j - y);
+      let currX = x + dx;
+      let currY = y + dy;
+      while (currX !== i || currY !== j) {
+        board[currY][currX] = 3 - board[currY][currX];
+        currX += dx;
+        currY += dy;
       }
     }
     if (newBoard[y][x] === 0) {
@@ -77,5 +81,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
